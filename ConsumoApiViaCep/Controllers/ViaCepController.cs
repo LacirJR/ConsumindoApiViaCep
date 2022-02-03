@@ -17,9 +17,10 @@ namespace ConsumoApiViaCep.Controllers
             logEntrada.NomeAplicacao = "ConsumoApiCep";
             logEntrada.NomeMaquina = Environment.MachineName;
             logEntrada.Usuario = Environment.UserName;
-            logEntrada.DataHora = DateTime.Now;
+
             try
             {
+                cep.Replace(".", "").Replace("-", "").Replace(" ", "");
 
                 if (string.IsNullOrWhiteSpace(cep) || cep.Length < 8 || cep.Length > 8)
                 {
@@ -32,23 +33,30 @@ namespace ConsumoApiViaCep.Controllers
                 }
                 var retornoCep = ConsumoApi.ExecutarApi.ConsultaCepGet<ConsumoApi.Contratos.ApiViaCep.GET.Response>(
                    string.Format("https://viacep.com.br/ws/{0}/json/", cep));
+
+                if (retornoCep.cep == null)
+                    throw new Exception("CEP INVALIDO TENTE NOVAMENTE");
+
+                return StatusCode(200, retornoCep);
             }
             catch (InvalidOperationException ex)
             {
                 logEntrada.MensagemErro = ex.Message;
                 logEntrada.RastreioErro = ex.StackTrace;
+                logEntrada.DataHora = DateTime.Now;
                 var request = ConsumoApi.ExecutarApi.LogErro<ConsumoApi.Contratos.Log.POST.Request>("https://logaplicacao.aiur.com.br/v1/Logs", logEntrada);
-                return StatusCode(400);
+                return StatusCode(400, ex.Message);
 
             }
             catch (Exception ex)
             {
                 logEntrada.MensagemErro = ex.Message;
                 logEntrada.RastreioErro = ex.StackTrace;
+                logEntrada.DataHora = DateTime.Now;
                 var request = ConsumoApi.ExecutarApi.LogErro<ConsumoApi.Contratos.Log.POST.Request>("https://logaplicacao.aiur.com.br/v1/Logs", logEntrada);
-                return StatusCode(404);
+                return StatusCode(404, ex.Message);
             }
-            return StatusCode(200);
+            
         }
 
     }

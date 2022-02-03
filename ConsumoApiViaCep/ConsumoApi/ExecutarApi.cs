@@ -26,7 +26,7 @@ namespace ConsumoApiViaCep.ConsumoApi
         public static T LogErro<T>(string url, object logEntrada)
         {
             string json = JsonConvert.SerializeObject(logEntrada);
-            var content = new StringContent(json, Encoding.UTF8, "application/json" );
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var request = _client.PostAsync(url, content).Result;
 
