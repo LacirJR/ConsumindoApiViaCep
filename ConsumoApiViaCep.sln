@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumoApiViaCep", "ConsumoApiViaCep\ConsumoApiViaCep.csproj", "{4A38B5F7-3528-4783-B614-C799CB7F174F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A38B5F7-3528-4783-B614-C799CB7F174F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A38B5F7-3528-4783-B614-C799CB7F174F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A38B5F7-3528-4783-B614-C799CB7F174F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A38B5F7-3528-4783-B614-C799CB7F174F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DFFE64B-C5A4-4702-B895-54C4E652B9FD}
+	EndGlobalSection
+EndGlobal
